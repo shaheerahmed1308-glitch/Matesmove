@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MatesMove</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#eee9f5;color:#17152a}.app{max-width:430px;min-height:100vh;margin:auto;background:#faf8ff}.s{min-height:100vh;padding:22px 18px 90px}.hide{display:none}.logo{font-size:28px;font-weight:900;color:#5b2bd6}.logo b{color:#ff7043}h1{font-size:29px;line-height:1.1}h2{margin:5px 0 8px}.sub{color:#77798c;line-height:1.45}.btn{width:100%;border:0;border-radius:15px;padding:15px;background:#5b2bd6;color:white;font-weight:bold;font-size:15px;margin-top:12px}.back{border:0;background:#eee7ff;color:#5b2bd6;border-radius:12px;font-size:25px;width:42px;height:42px}.head{display:flex;gap:12px;align-items:center;margin-bottom:18px}.hero{background:linear-gradient(135deg,#5123bd,#8955ed);color:white;border-radius:24px;padding:22px;margin:18px 0}.hero p{color:#eee7ff}.card{background:white;border:1px solid #e5e0ef;border-radius:18px;padding:15px;margin:10px 0}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.opt,.chip{border:1px solid #e1dceb;background:white;border-radius:14px;padding:12px 5px;font-weight:bold}.opt.sel,.chip.sel{border:2px solid #5b2bd6;background:#eee7ff;color:#5b2bd6}.chips{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}.label{font-weight:bold;font-size:13px;margin-top:16px}.input{width:100%;padding:14px;border:1px solid #ddd7e8;border-radius:13px;font-size:14px}.art{height:220px;border-radius:28px;background:linear-gradient(135deg,#eee5ff,#fff0e8);display:grid;place-items:center;font-size:65px;margin:20px 0}.spacer{height:25vh}.search{background:white;border:1px solid #e2ddeb;padding:13px;border-radius:15px;margin:15px 0}.search input{border:0;outline:0;width:90%;font-size:14px}.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.quick button{border:0;background:white;border-radius:16px;padding:12px 3px;font-size:11px}.q{font-size:27px;margin-bottom:5px}.near{display:flex;gap:9px;overflow:auto}.place{min-width:145px;background:white;border-radius:17px;border:1px solid #e1dceb;overflow:hidden}.pic{height:85px;background:#ddd2f6;display:grid;place-items:center;font-size:38px}.txt{padding:10px;font-size:13px}.sport{width:100%;display:flex;gap:12px;align-items:center;text-align:left;border:1px solid #e1dceb;background:white;border-radius:16px;padding:13px;margin:8px 0}.icon{width:43px;height:43px;border-radius:50%;background:#eee7ff;display:grid;place-items:center;font-size:23px}.map{height:310px;border-radius:22px;background:#e9eee5;position:relative;overflow:hidden;background-image:linear-gradient(25deg,transparent 47%,white 48%,white 52%,transparent 53%),linear-gradient(115deg,transparent 47%,white 48%,white 52%,transparent 53%);background-size:75px 75px}.pin{position:absolute;background:#5b2bd6;color:white;border-radius:50%;padding:10px;transform:rotate(-45deg)}.pin span{display:block;transform:rotate(45deg)}.mapbox{position:absolute;bottom:10px;left:10px;right:10px;background:white;border-radius:15px;padding:12px}.ride{width:100%;text-align:left;border:1px solid #ddd7e8;background:white;border-radius:15px;padding:13px;margin:6px 0}.ride.sel{border:2px solid #5b2bd6;background:#eee7ff}.event{display:flex;gap:10px;margin:12px 0}.dot{width:38px;height:38px;border-radius:50%;background:#eee7ff;display:grid;place-items:center}.event .card{flex:1;margin:0}.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);max-width:430px;width:100%;height:70px;background:white;border-top:1px solid #ddd7e8;display:flex;justify-content:space-around;align-items:center}.bottom button{border:0;background:none;color:#777;font-size:11px}.plus{background:#5b2bd6!important;color:white!important;border-radius:50%!important;width:48px;height:48px;font-size:24px!important}.center{text-align:center}.big{font-size:70px;margin-top:50px}
+</style>
+</head>
+<body>
+<div class="app">
+
+<section id="welcome" class="s">
+<div class="logo">Mates<b>Move</b></div>
+<div class="spacer"></div>
+<h1>Plan the day.<br>Live the moment.</h1>
+<h2><i>An app that plans the <span style="color:#ff7043">experience</span>,<br>not just an activity.</i></h2>
+<div class="art">🏸 👥 🚗 🍔</div>
+<button class="btn" onclick="go('vibe')">Get Started →</button>
+<p class="center sub">Your social day planner</p>
+</section>
+
+<section id="vibe" class="s hide">
+<div class="head"><button class="back" onclick="go('welcome')">‹</button><b>1 of 3</b></div>
+<h1>Tell us about<br>your vibe ✨</h1>
+<p class="sub">We'll create experiences that fit your group.</p>
+<div class="label">What's your vibe?</div>
+<div class="grid">
+<button class="opt sel" onclick="one(this)">🏃<br>Active</button>
+<button class="opt" onclick="one(this)">😎<br>Chill</button>
+<button class="opt" onclick="one(this)">🎉<br>Fun</button>
+<button class="opt" onclick="one(this)">🍔<br>Foodie</button>
+<button class="opt" onclick="one(this)">🎮<br>Gaming</button>
+<button class="opt" onclick="one(this)">🌄<br>Adventure</button>
+</div>
+<div class="label">Budget per person</div>
+<div class="chips">
+<button class="chip" onclick="chip(this)">₹300</button><button class="chip sel" onclick="chip(this)">₹500</button><button class="chip" onclick="chip(this)">₹1000</button><button class="chip" onclick="chip(this)">₹1500+</button>
+</div>
+<div class="label">How much time?</div>
+<div class="chips">
+<button class="chip" onclick="chip(this)">2–3 hrs</button><button class="chip sel" onclick="chip(this)">4–5 hrs</button><button class="chip" onclick="chip(this)">Half day</button><button class="chip" onclick="chip(this)">Full day</button>
+</div>
+<div class="label">Where are you based?</div>
+<input id="city" class="input" placeholder="e.g. Bengaluru">
+<button class="btn" onclick="go('interests')">Next →</button>
+</section>
+
+<section id="interests" class="s hide">
+<div class="head"><button class="back" onclick="go('vibe')">‹</button><b>2 of 3</b></div>
+<h1>What are you<br>interested in? 🎯</h1>
+<p class="sub">Pick anything your group enjoys.</p>
+<div class="grid">
+<button class="opt sel" onclick="toggle(this)">🏸<br>Sports</button>
+<button class="opt" onclick="toggle(this)">🍜<br>Food</button>
+<button class="opt" onclick="toggle(this)">🎬<br>Movies</button>
+<button class="opt" onclick="toggle(this)">🎵<br>Music</button>
+<button class="opt" onclick="toggle(this)">🎮<br>Gaming</button>
+<button class="opt" onclick="toggle(this)">✈️<br>Travel</button>
+<button class="opt" onclick="toggle(this)">🌿<br>Nature</button>
+<button class="opt" onclick="toggle(this)">🛍️<br>Shopping</button>
+<button class="opt" onclick="toggle(this)">＋<br>Other</button>
+</div>
+<div class="label">How many mates?</div>
+<div class="chips">
+<button class="chip" onclick="chip(this)">2</button><button class="chip" onclick="chip(this)">3</button><button class="chip sel" onclick="chip(this)">4</button><button class="chip" onclick="chip(this)">5+</button>
+</div>
+<div class="label">Name your group</div>
+<input class="input" placeholder="The Weekend Crew">
+<button class="btn" onclick="go('create')">Next →</button>
+</section>
+
+<section id="create" class="s hide">
+<div class="head"><button class="back" onclick="go('interests')">‹</button><b>3 of 3</b></div>
+<h1>Ready to make<br>a day of it? 🎉</h1>
+<p class="sub">Your preferences are ready.</p>
+<div class="card"><b>Your profile</b><p class="sub">🏃 Active • ₹500/person<br>🏸 Sports • 4 mates<br>📍 <span id="cityOut">Your city</span></p></div>
+<div class="hero"><h2>More than just plans.</h2><i>More moments. More memories. Together.</i></div>
+<button class="btn" onclick="go('home')">Create My Account →</button>
+</section>
+
+<section id="home" class="s hide">
+<div class="logo">Mates<b>Move</b></div>
+<p class="sub">Plan • Play • Ride Together</p>
+<h1>Hey! 👋<br><span style="font-size:18px">What are we doing today?</span></h1>
+<div class="search">⌕ <input placeholder="Search activities, places, or mates..."></div>
+<div class="hero"><h2>Play together.<br>Go further.</h2><p>Find mates, book a court, ride together and make it a day to remember.</p><button class="btn" style="background:white;color:#5b2bd6" onclick="go('plan')">Build my day →</button></div>
+<h3>Quick Actions</h3>
+<div class="quick">
+<button onclick="go('plan')"><div class="q">🏸</div>Sports</button>
+<button onclick="go('ride')"><div class="q">🚗</div>Ride</button>
+<button onclick="alert('Food recommendations coming soon!')"><div class="q">🍜</div>Food</button>
+<button onclick="alert('Explore coming soon!')"><div class="q">🌄</div>Explore</button>
+</div>
+<h3>Popular Near You</h3>
+<div class="near">
+<div class="place"><div class="pic">🏸</div><div class="txt"><b>Badminton Court</b><br>★ 4.8 • 1.2 km</div></div>
+<div class="place"><div class="pic">⚽</div><div class="txt"><b>Football Turf</b><br>★ 4.6 • 2.1 km</div></div>
+<div class="place"><div class="pic">🍔</div><div class="txt"><b>Cafe & Food</b><br>★ 4.5 • 1.8 km</div></div>
+</div>
+</section>
+
+<section id="plan" class="s hide">
+<div class="head"><button class="back" onclick="go('home')">‹</button><div><h2>Plan Your Day</h2><small>Choose an activity</small></div></div>
+<div class="card">
+<button class="sport" onclick="go('courts')"><div class="icon">🏸</div><div><b>Badminton</b><br><small>Popular • Near you</small></div>›</button>
+<button class="sport"><div class="icon">⚽</div><div><b>Football</b><br><small>Indoor & outdoor</small></div>›</button>
+<button class="sport"><div class="icon">🎾</div><div><b>Tennis</b><br><small>Courts near you</small></div>›</button>
+<button class="sport"><div class="icon">🏏</div><div><b>Cricket</b><br><small>Book a ground</small></div>›</button>
+<button class="sport"><div class="icon">🏓</div><div><b>Pickleball</b><br><small>New & trending</small></div>›</button>
+</div>
+</section>
+
+<section id="courts" class="s hide">
+<div class="head"><button class="back" onclick="go('plan')">‹</button><div><h2>Badminton Courts</h2><small>Choose a place</small></div></div>
+<div class="search">⌕ <input placeholder="Search courts near me"></div>
+<div class="map">
+<div class="pin" style="left:70%;top:25%"><span>🏸</span></div>
+<div class="pin" style="left:22%;top:50%"><span>🏸</span></div>
+<div class="pin" style="left:75%;top:62%"><span>🏸</span></div>
+<div class="mapbox"><b>Noah Sports Centre</b><br><small>★ 4.5 • 1.2 km • ₹300/hour</small><button class="btn" onclick="go('ride')">Book Now →</button></div>
+</div>
+</section>
+
+<section id="ride" class="s hide">
+<div class="head"><button class="back" onclick="go('home')">‹</button><div><h2>Ride Together</h2><small>Travel as a group</small></div></div>
+<div class="map">
+<div class="pin" style="left:70%;top:25%"><span>🏸</span></div>
+<div class="pin" style="left:75%;top:65%;background:#ff7043"><span>🍜</span></div>
+<div class="mapbox"><b>Sports Centre → Lunch</b><br><small>4 mates • 2.8 km • approx. 9 min</small></div>
+</div>
+<h3>Choose your group ride</h3>
+<button class="ride sel" onclick="ridePick(this)"><b>🚕 Group Cab</b><br><small>₹120/person • Arrive in 4 mins</small></button>
+<button class="ride" onclick="ridePick(this)"><b>🛺 Auto (Group)</b><br><small>₹75/person • Arrive in 6 mins</small></button>
+<button class="ride" onclick="ridePick(this)"><b>👥 Split Rides</b><br><small>₹60/person • Arrive in 8 mins</small></button>
+<button class="btn" onclick="book()">Confirm Group Ride →</button>
+</section>
+
+<section id="day" class="s hide">
+<div class="head"><button class="back" onclick="go('home')">‹</button><div><h2>Your Day Plan</h2><small>Saturday • 4 mates</small></div></div>
+<div class="event"><div class="dot">🏸</div><div class="card"><b>Badminton</b><br><small>8:00 AM – 10:00 AM • Noah Sports Centre</small></div></div>
+<div class="event"><div class="dot">🚗</div><div class="card"><b>Ride Together</b><br><small>10:00 AM – 10:20 AM</small></div></div>
+<div class="event"><div class="dot">🍜</div><div class="card"><b>Lunch</b><br><small>10:30 AM – 12:00 PM • Koramangala Cafe</small></div></div>
+<div class="event"><div class="dot">🎬</div><div class="card"><b>Movie</b><br><small>1:00 PM – 3:30 PM • PVR Koramangala</small></div></div>
+<button class="btn" onclick="go('complete')">Finish Day →</button>
+</section>
+
+<section id="complete" class="s center hide">
+<div class="big">🎉</div>
+<h1>Day Complete!</h1>
+<p class="sub">Good food, great company, memories for life.</p>
+<div class="card"><b>4</b> Activities &nbsp;&nbsp; <b>3</b> Places &nbsp;&nbsp; <b>4</b> Mates</div>
+<h3>How was your day?</h3>
+<div style="font-size:28px">⭐ ⭐ ⭐ ⭐ ☆</div>
+<button class="btn" onclick="go('home')">Plan Another Experience →</button>
+</section>
+
+<nav id="nav" class="bottom hide">
+<button onclick="go('home')">⌂<br>Home</button>
+<button onclick="go('day')">▣<br>Plan</button>
+<button class="plus" onclick="go('plan')">＋</button>
+<button onclick="alert('Invite your mates 👥')">♧<br>Mates</button>
+<button onclick="go('ride')">🚗<br>Ride</button>
+</nav>
+</div>
+
+<script>
+const ids=['welcome','vibe','interests','create','home','plan','courts','ride','day','complete'];
+function go(x){ids.forEach(i=>document.getElementById(i).classList.toggle('hide',i!=x));document.getElementById('nav').classList.toggle('hide',['welcome','vibe','interests','create'].includes(x));if(x=='create')document.getElementById('cityOut').textContent=document.getElementById('city').value||'Your city';scrollTo(0,0)}
+function one(x){x.parentNode.querySelectorAll('.opt').forEach(a=>a.classList.remove('sel'));x.classList.add('sel')}
+function toggle(x){x.classList.toggle('sel')}
+function chip(x){x.parentNode.querySelectorAll('.chip').forEach(a=>a.classList.remove('sel'));x.classList.add('sel')}
+function ridePick(x){document.querySelectorAll('.ride').forEach(a=>a.classList.remove('sel'));x.classList.add('sel')}
+function book(){alert('Group ride confirmed 🚕');setTimeout(()=>go('day'),500)}
+</script>
+</body>
+  </html>
