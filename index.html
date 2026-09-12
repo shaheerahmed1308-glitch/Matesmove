@@ -201,6 +201,32 @@ function book(){alert('Group ride confirmed 🚕');setTimeout(()=>go('day'),500)
       console.log("MatesMove connected to Supabase ✓", data);
     }
   });
+  async function createGroup(groupName) {
+  const { data: { user } } = await supabaseClient.auth.getUser();
+
+  if (!user) {
+    toast("Please wait for login...");
+    return;
+  }
+
+  const { data, error } = await supabaseClient
+    .from("groups")
+    .insert({
+      name: groupName,
+      created_by: user.id
+    })
+    .select()
+    .single();
+
+  if (error) {
+    console.error("Create group error:", error);
+    toast("Couldn't create group");
+    return;
+  }
+
+  console.log("GROUP CREATED:", data);
+  toast("Group created ✓");
+}
 
 </script>
 </body>
