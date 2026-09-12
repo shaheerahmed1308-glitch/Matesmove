@@ -182,6 +182,18 @@ function toggle(x){x.classList.toggle('sel')}
 function chip(x){x.parentNode.querySelectorAll('.chip').forEach(a=>a.classList.remove('sel'));x.classList.add('sel')}
 function ridePick(x){document.querySelectorAll('.ride').forEach(a=>a.classList.remove('sel'));x.classList.add('sel')}
 function book(){alert('Group ride confirmed 🚕');setTimeout(()=>go('day'),500)}
+  supabaseClient
+  .from("groups")
+  .select("id")
+  .limit(1)
+  .then(({ data, error }) => {
+    if (error) {
+      console.error("Supabase connection error:", error);
+    } else {
+      console.log("MatesMove connected to Supabase ✓", data);
+    }
+  });
+
 </script>
 </body>
   </html>
