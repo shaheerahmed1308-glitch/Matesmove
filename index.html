@@ -205,7 +205,7 @@ function book(){alert('Group ride confirmed 🚕');setTimeout(()=>go('day'),500)
   const { data: { user } } = await supabaseClient.auth.getUser();
 
   if (!user) {
-    toast("Please wait for login...");
+    alert("Please wait for login..");
     return;
   }
 
@@ -220,12 +220,12 @@ function book(){alert('Group ride confirmed 🚕');setTimeout(()=>go('day'),500)
 
   if (error) {
     console.error("Create group error:", error);
-    toast("Couldn't create group");
+    alert("Couldn't create group");
     return;
   }
 
   console.log("GROUP CREATED:", data);
-  toast("Group created ✓");
+  alert("Group created ✓");
 }
 
 </script>
