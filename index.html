@@ -201,16 +201,31 @@ function book(){alert('Group ride confirmed 🚕');setTimeout(()=>go('day'),500)
       console.log("MatesMove connected to Supabase ✓", data);
     }
   });
-  async function createGroup(groupName) 
-  {
-    const { data: { user } } = await supabaseClient.auth.getUser();
+  async function createGroup(groupName) {
+  const { data: { user } } = await supabaseClient.auth.getUser();
 
   if (!user) {
     alert("Please wait for login...");
     return;
   }
 
-  const inviteCode = Math.random().toString(36).substring(2, 10).toUpperCase();
+  // Create the user's profile if it doesn't exist
+  const { error: profileError } = await supabaseClient
+    .from("profiles")
+    .upsert({
+      id: user.id
+    });
+
+  if (profileError) {
+    console.error("Profile error:", profileError);
+    alert("Couldn't create profile: " + profileError.message);
+    return;
+  }
+
+  const inviteCode = Math.random()
+    .toString(36)
+    .substring(2, 10)
+    .toUpperCase();
 
   const { data, error } = await supabaseClient
     .from("groups")
@@ -231,7 +246,6 @@ function book(){alert('Group ride confirmed 🚕');setTimeout(()=>go('day'),500)
   console.log("GROUP CREATED:", data);
   alert("Group created ✓\nInvite code: " + inviteCode);
 }
-    
   
 </script>
 </body>
