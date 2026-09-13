@@ -287,10 +287,14 @@ alert("Group created ✓\nInvite code: " + inviteCode);
     });
 
   if (memberError) {
+  if (memberError.code === "23505") {
+    alert("You're already in this group! 👥");
+  } else {
     console.error("Join group error:", memberError);
     alert("Couldn't join group: " + memberError.message);
-    return;
   }
+  return;
+}
 
   alert("Joined " + group.name + " ✓");
 }
