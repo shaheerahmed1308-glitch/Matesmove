@@ -259,6 +259,40 @@ if (memberError) {
 console.log("GROUP CREATED:", data);
 alert("Group created ✓\nInvite code: " + inviteCode);
 }
+  async function joinGroup(inviteCode) {
+  const { data: { user } } = await supabaseClient.auth.getUser();
+
+  if (!user) {
+    alert("Please wait for login...");
+    return;
+  }
+
+  const { data: group, error } = await supabaseClient
+    .from("groups")
+    .select("id, name, invite_code")
+    .eq("invite_code", inviteCode.toUpperCase())
+    .single();
+
+  if (error || !group) {
+    alert("Group not found. Check the invite code.");
+    return;
+  }
+
+  const { error: memberError } = await supabaseClient
+    .from("group_members")
+    .insert({
+      group_id: group.id,
+      user_id: user.id
+    });
+
+  if (memberError) {
+    console.error("Join group error:", memberError);
+    alert("Couldn't join group: " + memberError.message);
+    return;
+  }
+
+  alert("Joined " + group.name + " ✓");
+}
   
 </script>
 </body>
