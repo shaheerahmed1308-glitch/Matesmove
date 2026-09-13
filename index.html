@@ -243,8 +243,21 @@ function book(){alert('Group ride confirmed 🚕');setTimeout(()=>go('day'),500)
     return;
   }
 
-  console.log("GROUP CREATED:", data);
-  alert("Group created ✓\nInvite code: " + inviteCode);
+  const { error: memberError } = await supabaseClient
+  .from("group_members")
+  .insert({
+    group_id: data.id,
+    user_id: user.id
+  });
+
+if (memberError) {
+  console.error("Member error:", memberError);
+  alert("Group created, but couldn't add you to the group.");
+  return;
+}
+
+console.log("GROUP CREATED:", data);
+alert("Group created ✓\nInvite code: " + inviteCode);
 }
   
 </script>
