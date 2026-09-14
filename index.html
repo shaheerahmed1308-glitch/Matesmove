@@ -191,7 +191,7 @@ const supabaseClient = window.supabase.createClient(
   <button onclick="go('home')">⌂<br>Home</button>
   <button onclick="go('day')">▣<br>Plan</button>
   <button onclick="go('plan')">＋</button>
-  <button onclick="go('mates')">👥<br>Mates</button>
+  <button onclick="go('mates');loadMyGroups()">👥<br>Mates</button>
 <button onclick="joinGroup(prompt('Enter your invite code:') || '')">🔗<br>Join</button>
   <button onclick="go('ride')">🚗<br>Ride</button>
 </nav>
