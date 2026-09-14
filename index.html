@@ -312,7 +312,42 @@ alert("Group created ✓\nInvite code: " + inviteCode);
 
   alert("Joined " + group.name + " ✓");
 }
-  
+ async function loadMyGroups() {
+  const { data: { user } } = await supabaseClient.auth.getUser();
+
+  if (!user) return;
+
+  const { data, error } = await supabaseClient
+    .from("group_members")
+    .select(`
+      group_id,
+      groups (
+        id,
+        name,
+        invite_code
+      )
+    `)
+    .eq("user_id", user.id);
+
+  if (error) {
+    console.error("Load groups error:", error);
+    return;
+  }
+
+  const list = document.getElementById("groupList");
+
+  if (!data || data.length === 0) {
+    list.innerHTML = "<p>No groups yet. Create or join one!</p>";
+    return;
+  }
+
+  list.innerHTML = data.map(item => `
+    <div class="card">
+      <h2>👥 ${item.groups.name}</h2>
+      <p>Invite code: <b>${item.groups.invite_code}</b></p>
+    </div>
+  `).join("");
+} 
 </script>
 </body>
   </html>
