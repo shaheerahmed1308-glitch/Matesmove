@@ -198,7 +198,7 @@ const supabaseClient = window.supabase.createClient(
 </div>
 
 <script>
-const ids=['welcome','vibe','interests','create','home','plan','courts','ride','day','complete'];
+const ids=['welcome','vibe','interests','create','home','plan','courts','ride','day','complete',mates];
 function go(x){ids.forEach(i=>document.getElementById(i).classList.toggle('hide',i!=x));document.getElementById('nav').classList.toggle('hide',['welcome','vibe','interests','create'].includes(x));if(x=='create')document.getElementById('cityOut').textContent=document.getElementById('city').value||'Your city';scrollTo(0,0)}
 function one(x){x.parentNode.querySelectorAll('.opt').forEach(a=>a.classList.remove('sel'));x.classList.add('sel')}
 function toggle(x){x.classList.toggle('sel')}
