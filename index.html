@@ -172,6 +172,20 @@ const supabaseClient = window.supabase.createClient(
 <div style="font-size:28px">⭐ ⭐ ⭐ ⭐ ☆</div>
 <button class="btn" onclick="go('home')">Plan Another Experience →</button>
 </section>
+  <section id="mates" class="s center hide">
+  <h1>👥 Your Mates</h1>
+  <p class="sub">Plan the experience together.</p>
+
+  <div id="groupList"></div>
+
+  <button class="btn" onclick="createGroup(prompt('Enter your group name:') || 'My MatesMove Group')">
+    ➕ Create Group
+  </button>
+
+  <button class="btn" onclick="joinGroup(prompt('Enter your invite code:') || '')">
+    🔗 Join Group
+  </button>
+</section>
 
 <nav id="nav" class="bottom">
   <button onclick="go('home')">⌂<br>Home</button>
