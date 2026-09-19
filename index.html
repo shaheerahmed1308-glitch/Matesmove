@@ -3,7 +3,7 @@
 <head>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const SUPABASE_URL ="https://ylpmrkuosjupzdqlpras.supabase.co ";
+const SUPABASE_URL ="https://ylpmrkuosjupzdqlpras.supabase.co";
 const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlscG1ya3Vvc2p1cHpkcWxwcmFzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODkxMzg5MzQsImV4cCI6MjEwNDcxNDkzNH0.UiUtlUkv2p1GUkyU810SnKe7bg8nOIWT_8v-NbJSuKo";
 
 const supabaseClient = window.supabase.createClient(
@@ -198,7 +198,7 @@ const supabaseClient = window.supabase.createClient(
 </div>
 
 <script>
-const ids=['welcome','vibe','interests','create','home','plan','courts','ride','day','complete',mates];
+const ids=['welcome','vibe','interests','create','home','plan','courts','ride','day','complete','mates'];
 function go(x){ids.forEach(i=>document.getElementById(i).classList.toggle('hide',i!=x));document.getElementById('nav').classList.toggle('hide',['welcome','vibe','interests','create'].includes(x));if(x=='create')document.getElementById('cityOut').textContent=document.getElementById('city').value||'Your city';scrollTo(0,0)}
 function one(x){x.parentNode.querySelectorAll('.opt').forEach(a=>a.classList.remove('sel'));x.classList.add('sel')}
 function toggle(x){x.classList.toggle('sel')}
