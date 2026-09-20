@@ -314,6 +314,17 @@ alert("Group created ✓\nInvite code: " + inviteCode);
     alert("Please wait for login...");
     return;
   }
+    const { error: profileError } = await supabaseClient
+  .from("profiles")
+  .upsert({
+    id: user.id
+  });
+
+if (profileError) {
+  console.error("Profile error:", profileError);
+  alert("Couldn't create profile: " + profileError.message);
+  return;
+}
 
   const { data: group, error } = await supabaseClient
     .from("groups")
