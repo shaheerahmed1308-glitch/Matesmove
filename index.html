@@ -321,10 +321,16 @@ alert("Group created ✓\nInvite code: " + inviteCode);
     .eq("invite_code", inviteCode.toUpperCase())
     .single();
 
-  if (error || !group) {
-    alert("Group not found. Check the invite code.");
-    return;
-  }
+  if (error) {
+  console.error("Find group error:", error);
+  alert("Couldn't find group: " + error.message);
+  return;
+}
+
+if (!group) {
+  alert("Group not found. Check the invite code.");
+  return;
+}
 
   const { error: memberError } = await supabaseClient
     .from("group_members")
