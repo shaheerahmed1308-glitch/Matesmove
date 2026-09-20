@@ -10,14 +10,8 @@ const supabaseClient = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_ANON_KEY
 );
-  supabaseClient.auth.signInAnonymously()
-  .then(({ data, error }) => {
-    if (error) {
-      console.error("Anonymous sign-in error:", error);
-    } else {
-      console.log("MatesMove user session created ✓", data.user.id);
-    }
-  });
+  
+  
 </script>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MatesMove</title>
@@ -94,7 +88,9 @@ const supabaseClient = window.supabase.createClient(
 <p class="sub">Your preferences are ready.</p>
 <div class="card"><b>Your profile</b><p class="sub">🏃 Active • ₹500/person<br>🏸 Sports • 4 mates<br>📍 <span id="cityOut">Your city</span></p></div>
 <div class="hero"><h2>More than just plans.</h2><i>More moments. More memories. Together.</i></div>
-<button class="btn" onclick="go('home')">Create My Account →</button>
+<input id="email" class="input" type="email" placeholder="Your email" style="margin-top:12px">
+<input id="password" class="input" type="password" placeholder="Create a password" style="margin-top:10px">
+<button class="btn" onclick="createAccount()">Create My Account →</button>
 </section>
 
 <section id="home" class="s hide">
@@ -216,6 +212,43 @@ function book(){alert('Group ride confirmed 🚕');setTimeout(()=>go('day'),500)
       console.log("MatesMove connected to Supabase ✓", data);
     }
   });
+ async function createAccount() {
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+
+  if (!email || !password) {
+    alert("Please enter your email and password.");
+    return;
+  }
+
+  if (password.length < 6) {
+    alert("Password must be at least 6 characters.");
+    return;
+  }
+
+  const { data, error } = await supabaseClient.auth.signUp({
+    email: email,
+    password: password
+  });
+
+  if (error) {
+    console.error("Signup error:", error);
+    alert("Couldn't create account: " + error.message);
+    return;
+  }
+
+  if (data.user) {
+    console.log("MatesMove account created ✓", data.user.id);
+
+    if (!data.session) {
+      alert("Account created! Please check your email to verify your account.");
+    } else {
+      alert("Account created ✓");
+    }
+
+    go("home");
+  }
+}
   async function createGroup(groupName) {
   const { data: { user } } = await supabaseClient.auth.getUser();
 
